@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
+// main() is the entry point to the riya compiler CLI.
 func main() {
-	fmt.Println("hello from riya!")
+	//cli args
+	args := os.Args[1:]
+
+	fmt.Println(args)
 }
