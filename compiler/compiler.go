@@ -3,5 +3,6 @@ package compiler
 import "fmt"
 
 func Compile(filename string) {
-	fmt.Println("compiling...")
+	source := ReadFileToString(filename)
+	fmt.Println(source)
 }
