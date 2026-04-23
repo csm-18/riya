@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/csm-18/riya/compiler"
 )
 
 // main() is the entry point to the riya compiler CLI.
@@ -32,7 +34,7 @@ func main() {
 		if args[0] == "compile" { // compile
 			filename := args[1]
 			if len(filename) > 5 && strings.HasSuffix(filename, ".riya") {
-				fmt.Printf("Compiling %s...\n", filename)
+				compiler.Compile(filename)
 			}
 		}
 	}
