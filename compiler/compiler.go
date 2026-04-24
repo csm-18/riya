@@ -16,7 +16,6 @@ func Compile(filename string) {
 // for compiling a single source file
 func CompileFile(srcFile SourceFile) SourceFile {
 	var outputFile SourceFile
-	outputFile.Filename = srcFile.Filename[:len(srcFile.Filename)-4] + ".asm"
-
+	outputFile.Filename = srcFile.Filename[:len(srcFile.Filename)-4] + "asm"
 	return outputFile
 }
