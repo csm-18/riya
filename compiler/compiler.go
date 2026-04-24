@@ -8,6 +8,9 @@ func Compile(filename string) {
 		outputFiles[i] = CompileFile(srcFile)
 	}
 
+	//create all output files
+	//build exe from output files
+
 }
 
 // for compiling a single source file
