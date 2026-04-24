@@ -24,3 +24,5 @@ var TokenTypes = map[string]string{
 	"LeftBrace":     "LeftBrace",
 	"RightBrace":    "RightBrace",
 }
+
+var Keywords = []string{"fun"}
