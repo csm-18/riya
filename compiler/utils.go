@@ -35,3 +35,11 @@ func PrintErrorWithPosition(srcFile SourceFile, index int, message string) {
 	fmt.Printf("Error in file '%s' at line %d, column %d:\n %s\n", srcFile.Filename, line, column, message)
 	os.Exit(1)
 }
+
+func DebugPrintTokens(tokens []Token) {
+	fmt.Println("=== TOKENS ===")
+	for i, token := range tokens {
+		fmt.Printf("[%d] Type: %-15s | Value: %-10s | Index: %d\n", i, token.Type, "'"+token.Value+"'", token.Index)
+	}
+	fmt.Println("==============")
+}
