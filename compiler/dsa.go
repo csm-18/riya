@@ -26,3 +26,31 @@ var TokenTypes = map[string]string{
 }
 
 var Keywords = []string{"fun"}
+
+// AST (Abstract Syntax Tree) data structures
+type ASTNode interface {
+	node()
+}
+
+type FileNode struct {
+	Filename string
+	Children []ASTNode
+}
+
+func (n FileNode) node() {}
+
+type FunctionNode struct {
+	Name        string
+	Parameters  []FunctionParameterNode
+	ReturnTypes []string
+	Body        []ASTNode
+}
+
+func (n FunctionNode) node() {}
+
+type FunctionParameterNode struct {
+	Name string
+	Type string
+}
+
+func (n FunctionParameterNode) node() {}
