@@ -1,18 +1,17 @@
 package compiler
 
-import "fmt"
-
 // for compiling a source file and all its dependencies
 func Compile(filename string) {
 	srcFiles := ResolveImports(filename)
-
-	if len(srcFiles) == 1 {
-		CompileFile(srcFiles[0])
+	outputFiles := make([]SourceFile, len(srcFiles))
+	for i, srcFile := range srcFiles {
+		outputFiles[i] = CompileFile(srcFile)
 	}
 
 }
 
 // for compiling a single source file
-func CompileFile(srcFile SourceFile) {
-	fmt.Println("Compiling... ")
+func CompileFile(srcFile SourceFile) SourceFile {
+	var outputFile SourceFile
+	return outputFile
 }
