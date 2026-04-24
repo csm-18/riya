@@ -56,6 +56,9 @@ func GetTokens(srcFile SourceFile) []Token {
 
 			x = y
 			continue
+		} else if srcFile.Content[x] == ' ' || srcFile.Content[x] == '\n' || srcFile.Content[x] == '\t' {
+			x += 1
+			continue
 		} else {
 			PrintErrorWithPosition(srcFile, x, "Undefined token!")
 		}
