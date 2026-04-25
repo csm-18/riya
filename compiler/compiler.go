@@ -18,4 +18,7 @@ func Compile(filename string) {
 	ast := ParseTokensToAST(tokens, srcFile)
 
 	DebugPrintAST(ast)
+
+	//semantic analysis
+	SemanticAnalyzer(ast)
 }

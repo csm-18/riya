@@ -1,8 +1,9 @@
 // make ast from tokens
 package compiler
 
-func ParseTokensToAST(tokens []Token, srcFile SourceFile) ASTNode {
+func ParseTokensToAST(tokens []Token, srcFile SourceFile) FileNode {
 	var ast = FileNode{
+		NodeKind: "FileNode",
 		Filename: srcFile.Filename,
 		Children: []ASTNode{},
 	}
@@ -28,6 +29,7 @@ func ParseFunctionNode(tokens []Token, x int, srcFile SourceFile) (ASTNode, int)
 	x += 1 // skip 'fun' keyword
 
 	var functionNode = FunctionNode{
+		NodeKind:    "FunctionNode",
 		Name:        "",
 		Parameters:  []FunctionParameterNode{},
 		ReturnTypes: []string{},

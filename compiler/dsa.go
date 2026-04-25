@@ -33,6 +33,7 @@ type ASTNode interface {
 }
 
 type FileNode struct {
+	NodeKind string
 	Filename string
 	Children []ASTNode
 }
@@ -40,6 +41,7 @@ type FileNode struct {
 func (n FileNode) node() {}
 
 type FunctionNode struct {
+	NodeKind    string
 	Name        string
 	Parameters  []FunctionParameterNode
 	ReturnTypes []string
@@ -49,8 +51,9 @@ type FunctionNode struct {
 func (n FunctionNode) node() {}
 
 type FunctionParameterNode struct {
-	Name string
-	Type string
+	NodeKind string
+	Name     string
+	Type     string
 }
 
 func (n FunctionParameterNode) node() {}
