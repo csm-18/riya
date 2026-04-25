@@ -21,4 +21,7 @@ func Compile(filename string) {
 
 	//semantic analysis
 	SemanticAnalyzer(ast)
+
+	//code generation
+	CodeGenerator(ast)
 }
