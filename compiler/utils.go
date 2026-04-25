@@ -3,6 +3,7 @@ package compiler
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func ReadFileToString(filename string) string {
@@ -42,4 +43,37 @@ func DebugPrintTokens(tokens []Token) {
 		fmt.Printf("[%d] Type: %-15s | Value: %-10s | Index: %d\n", i, token.Type, "'"+token.Value+"'", token.Index)
 	}
 	fmt.Println("==============")
+}
+
+func DebugPrintAST(node ASTNode) {
+	fmt.Println("=== AST ===")
+	printASTNode(node, 0)
+	fmt.Println("===========")
+}
+
+func printASTNode(node ASTNode, indent int) {
+	indentStr := strings.Repeat("  ", indent)
+
+	switch n := node.(type) {
+	case FileNode:
+		fmt.Printf("%sFileNode: %s\n", indentStr, n.Filename)
+		for _, child := range n.Children {
+			printASTNode(child, indent+1)
+		}
+	case FunctionNode:
+		fmt.Printf("%sFunctionNode: %s\n", indentStr, n.Name)
+		fmt.Printf("%s  Parameters:\n", indentStr)
+		for _, param := range n.Parameters {
+			printASTNode(param, indent+2)
+		}
+		fmt.Printf("%s  ReturnTypes: %v\n", indentStr, n.ReturnTypes)
+		fmt.Printf("%s  Body:\n", indentStr)
+		for _, stmt := range n.Body {
+			printASTNode(stmt, indent+2)
+		}
+	case FunctionParameterNode:
+		fmt.Printf("%sParameter: %s (%s)\n", indentStr, n.Name, n.Type)
+	default:
+		fmt.Printf("%sUnknown AST Node\n", indentStr)
+	}
 }

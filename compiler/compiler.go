@@ -15,5 +15,7 @@ func Compile(filename string) {
 	DebugPrintTokens(tokens)
 
 	//parse tokens to AST
+	ast := ParseTokensToAST(tokens, srcFile)
 
+	DebugPrintAST(ast)
 }
