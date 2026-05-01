@@ -15,6 +15,10 @@ int main(int argc, char* argv[]) {
 
     if (args.empty()){
         std::cout << RIYA_VERSION<< RIYA_ABOUT;
+    }else if (args.size() == 1){
+        if (args[0] == "version"){
+            std::cout << RIYA_VERSION;
+        }
     }
     return 0;
 }
