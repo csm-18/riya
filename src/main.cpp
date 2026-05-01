@@ -10,7 +10,8 @@ const std::string RIYA_ABOUT = "riya is a high-level programming language\n\nfor
 const std::string RIYA_HELP = "riya commands:\n"
         " 1. riya                -> print about info\n"
         " 2. riya version        -> print riya version\n"
-        " 3. riya help           -> print riya commands\n";
+        " 3. riya help           -> print riya commands\n"
+        " 4. riya <file.riya>    -> run .riya file\n";
 
 int main(int argc, char* argv[]) {
     //cli args
@@ -24,6 +25,9 @@ int main(int argc, char* argv[]) {
             std::cout << RIYA_VERSION;
         }else if (args[0] == "help"){
             std::cout << RIYA_HELP;
+        }else if (args[0].length() > 5 &&
+                   args[0].compare(args[0].length() - 5, 5, ".riya") == 0) {
+            std::cout << "Running file: " << args[0] << "\n";
         }
     }
     return 0;
