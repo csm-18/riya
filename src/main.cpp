@@ -2,6 +2,10 @@
 #include <string>
 #include <vector>
 
+//includes: start
+void runFile(std::string filePath);
+//includes: end
+
 std::vector<std::string> getArgsFrom(int argc, char* argv[]);
 
 
@@ -25,9 +29,8 @@ int main(int argc, char* argv[]) {
             std::cout << RIYA_VERSION;
         }else if (args[0] == "help"){
             std::cout << RIYA_HELP;
-        }else if (args[0].length() > 5 &&
-                   args[0].compare(args[0].length() - 5, 5, ".riya") == 0) {
-            std::cout << "Running file: " << args[0] << "\n";
+        }else if (args[0].length() > 5 && args[0].compare(args[0].length() - 5, 5, ".riya") == 0) {
+            runFile(args[0]);
         }
     }
     return 0;
