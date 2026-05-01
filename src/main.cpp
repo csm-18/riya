@@ -6,7 +6,7 @@ std::vector<std::string> getArgsFrom(int argc, char* argv[]);
 
 
 const std::string RIYA_VERSION = "riya 0.1.0\n";
-const std::string RIYA_ABOUT = "A high-level programming language\nFor help:\n riya help\n";
+const std::string RIYA_ABOUT = "riya is a high-level programming language\n\nfor help:\n riya help\n";
 const std::string RIYA_HELP = "riya commands:\n"
         " 1. riya                -> print about info\n"
         " 2. riya version        -> print riya version\n"
