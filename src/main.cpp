@@ -4,11 +4,17 @@
 
 std::vector<std::string> getArgsFrom(int argc, char* argv[]);
 
+
+const std::string RIYA_VERSION = "riya 0.1.0\n";
+const std::string RIYA_ABOUT = "A high-level programming language\nFor help:\n riya help\n";
+
 int main(int argc, char* argv[]) {
     //cli args
     std::vector<std::string> args = getArgsFrom(argc, argv);
-    for (const std::string &arg : args) {
-        std::cout << arg << std::endl;
+
+
+    if (args.empty()){
+        std::cout << RIYA_VERSION<< RIYA_ABOUT;
     }
     return 0;
 }
