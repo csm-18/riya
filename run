@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BUILD_DIR="$PROJECT_DIR/build"
+SRC_DIR="$PROJECT_DIR/src"
+MAIN_CLASS="CompilerKt"
+
+# Create build directory
+mkdir -p "$BUILD_DIR"
+
+# Compile all Kotlin files (including nested directories)
+echo "🔨 Compiling Kotlin files..."
+kotlinc $(find "$SRC_DIR" -name "*.kt") -include-runtime -d "$BUILD_DIR/compiler.jar"
+
+echo "✅ Build complete"
+
+# Run the compiled jar with CLI arguments
+if [ $# -gt 0 ]; then
+    echo "🚀 Running with arguments: $@"
+    java -jar "$BUILD_DIR/compiler.jar" "$@"
+else
+    echo "🚀 Running compiler..."
+    java -jar "$BUILD_DIR/compiler.jar"
+fi
