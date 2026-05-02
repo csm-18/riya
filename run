@@ -6,21 +6,38 @@ PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_DIR="$PROJECT_DIR/build"
 SRC_DIR="$PROJECT_DIR/src"
 MAIN_CLASS="CompilerKt"
+JAR_FILE="$BUILD_DIR/compiler.jar"
 
 # Create build directory
 mkdir -p "$BUILD_DIR"
 
-# Compile all Kotlin files (including nested directories)
-echo "🔨 Compiling Kotlin files..."
-kotlinc $(find "$SRC_DIR" -name "*.kt") -include-runtime -d "$BUILD_DIR/compiler.jar"
+# Function to check if rebuild is needed
+needs_rebuild() {
+    if [ ! -f "$JAR_FILE" ]; then
+        return 0  # JAR doesn't exist, need to build
+    fi
+    
+    # Check if any .kt file is newer than the JAR
+    if [ -n "$(find "$SRC_DIR" -name "*.kt" -newer "$JAR_FILE")" ]; then
+        return 0  # Found newer files, need rebuild
+    else
+        return 1  # No newer files, no rebuild needed
+    fi
+}
 
-echo "✅ Build complete"
+if needs_rebuild; then
+    echo "🔨 Compiling Kotlin files..."
+    kotlinc $(find "$SRC_DIR" -name "*.kt") -include-runtime -d "$JAR_FILE"
+    echo "✅ Build complete"
+else
+    echo "✅ Build up to date, skipping compilation"
+fi
 
 # Run the compiled jar with CLI arguments
 if [ $# -gt 0 ]; then
     echo "🚀 Running with arguments: $@"
-    java -jar "$BUILD_DIR/compiler.jar" "$@"
+    java -jar "$JAR_FILE" "$@"
 else
     echo "🚀 Running compiler..."
-    java -jar "$BUILD_DIR/compiler.jar"
+    java -jar "$JAR_FILE"
 fi
