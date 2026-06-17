@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:riya}",
+            "name": "Debug riya",
+            "target": "riya",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug riya"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:riya}",
+            "name": "Release riya",
+            "target": "riya",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release riya"
+        }
+    ]
+}
