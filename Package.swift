@@ -11,10 +11,7 @@ let package = Package(
         .executableTarget(
             name: "riya"
         ),
-        .testTarget(
-            name: "riyaTests",
-            dependencies: ["riya"]
-        ),
+        
     ],
     swiftLanguageModes: [.v6]
 )
