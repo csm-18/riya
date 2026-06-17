@@ -14,8 +14,7 @@ if args.isEmpty {
 }else if args.count == 1 {
 
     if args[0].hasSuffix(".riya") && (args[0].count > 5){
-        print("compiling \(args[0])")
-        
+        Compile(filename: args[0])
     }else{
 
         switch args[0] {    
