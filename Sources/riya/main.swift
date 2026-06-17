@@ -1,6 +1,6 @@
 import Foundation
 
-let RIYA_VERSION = "riya 0.1.0"
+let RIYA_VERSION = "Riya 0.1.0"
 
 let args = Array(CommandLine.arguments.dropFirst())
 
@@ -12,7 +12,20 @@ if args.isEmpty {
     print("For help: ")
     print("  riya help")        
 }else if args.count == 1 {
-    if args[0] == "version" {
+    switch args[0] {
+    case "version":
         print(RIYA_VERSION)
+    case "help":
+        print("Riya commands:")
+        print("  riya                  ->  Print about message")
+        print("  riya <filename.riya>  ->  Compile .riya file to .js file")
+        print("  riya version          ->  Print riya version")
+        print("  riya help             ->  Print riya commands list")
+    default:
+        print("Error: Unknown command!")
+        exit(0)
     }
+}else{
+    print("Error: Unknown command!")
+    exit(0)
 }
