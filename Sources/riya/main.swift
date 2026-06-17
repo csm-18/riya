@@ -2,7 +2,7 @@ import Foundation
 
 let RIYA_VERSION = "riya 0.1.0"
 
-let args = CommandLine.arguments[1...]
+let args = Array(CommandLine.arguments.dropFirst())
 
 if args.isEmpty {
     print(RIYA_VERSION)
@@ -11,4 +11,8 @@ if args.isEmpty {
     print("")
     print("For help: ")
     print("  riya help")        
+}else if args.count == 1 {
+    if args[0] == "version" {
+        print(RIYA_VERSION)
+    }
 }
