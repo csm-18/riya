@@ -25,6 +25,28 @@ func lex(filename: String,text : String) -> [Token] {
         if text[x] == "(" {
             let token = Token(type: TokenType.left_paren,value: "(",index: x)
             tokens.append(token)
+        }else if text[x] == ")" {
+            let token = Token(type: TokenType.right_paren, value: ")", index: x)
+            tokens.append(token)            
+        }else if text[x] == "\""{
+            var end_quote = false
+            var y = x+1
+            while y < text.count {
+                if text[y] == "\"" {
+                    end_quote = true
+                    break
+                }
+                y+=1
+            }
+
+            if end_quote {
+                let token = Token(type: TokenType.string_literal, value: text[x+1...y-1], index: x)
+                tokens.append(token)
+                x = y+1
+                continue
+            }else{
+                printError(message: "Unclosed string literal!", at: x, in: text, filename: filename)
+            }
         }
         x+=1
     }
