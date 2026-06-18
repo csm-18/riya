@@ -22,7 +22,10 @@ func lex(filename: String,text : String) -> [Token] {
 
     var x = 0
     while x < text.count {
-        
+        if text[x] == "(" {
+            let token = Token(type: TokenType.left_paren,value: "(",index: x)
+            tokens.append(token)
+        }
         x+=1
     }
     return tokens
