@@ -52,6 +52,23 @@ func lex(filename: String,text : String) -> [Token] {
         }else if text[x] == "\n"{
             let token = Token(type: TokenType.newline, value: "newline", index: x)
             tokens.append(token)
+        }else if x+1 < text.count && text[x...x+1] == "--"{
+            var newline = false
+
+            var y = x+2
+            while y < text.count {
+                if text[y] == "\n"{
+                    newline = true
+                    break
+                } 
+                y += 1
+            }
+            if newline{
+                x = y
+                continue
+            }else {
+                return tokens
+            }
         }
         x+=1
     }
