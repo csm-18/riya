@@ -47,6 +47,11 @@ func lex(filename: String,text : String) -> [Token] {
             }else{
                 printError(message: "Unclosed string literal!", at: x, in: text, filename: filename)
             }
+        }else if text[x] == " " {
+            //skip white space
+        }else if text[x] == "\n"{
+            let token = Token(type: TokenType.newline, value: "newline", index: x)
+            tokens.append(token)
         }
         x+=1
     }
